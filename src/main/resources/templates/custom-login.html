@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login com Google</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonte Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .google-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            color: #3c4043;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(60, 64, 67, 0.1);
+        }
+
+        .google-btn img {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Hover */
+        .google-btn:hover {
+            background-color: #f7f8f8;
+            border-color: #d2e3fc;
+            box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3);
+        }
+
+        /* Active */
+        .google-btn:active {
+            background-color: #eee;
+            box-shadow: inset 0 1px 2px rgba(60, 64, 67, 0.2);
+        }
+
+        /* Focus */
+        .google-btn:focus {
+            outline: none;
+            border-color: #4285f4;
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
+        }
+
+        /* Disabled */
+        .google-btn:disabled {
+            background-color: #f1f3f4;
+            color: #9aa0a6;
+            border-color: #dadce0;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <form method="GET" action="/oauth2/authorization/google">
+        <button type="submit" class="google-btn">
+            <!-- Ícone do Google (SVG) -->
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo">
+            <span>Sign in with Google</span>
+        </button>
+    </form>
+</div>
+
+</body>
+</html>

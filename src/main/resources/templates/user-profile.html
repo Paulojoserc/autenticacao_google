@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil do Usuário</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonte Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4285F4, #34A853);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-img {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4285F4;
+            margin-bottom: 15px;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 5px;
+        }
+
+        .email {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 20px;
+        }
+
+        .logout-btn {
+            display: inline-block;
+            padding: 10px 16px;
+            background-color: #4285F4;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #3367d6;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <!-- Foto -->
+    <img th:src="${photo}" alt="Foto do usuário" class="profile-img">
+
+    <!-- Nome -->
+    <div class="name" th:text="${name}">Nome do Usuário</div>
+
+    <!-- Email -->
+    <div class="email" th:text="${email}">email@exemplo.com</div>
+
+    <!-- Botão logout (opcional) -->
+    <a href="/logout" class="logout-btn">Sair</a>
+</div>
+
+</body>
+</html>
