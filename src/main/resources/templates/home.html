@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Autenticação Google</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Fonte -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div class="main">
+    <div class="container">
+        <h1>🔐 Login com Google</h1>
+        <p>Sistema de autenticação utilizando OAuth2. Faça login para acessar seu perfil.</p>
+        <a th:href="@{/oauth2/authorization/google}" class="google-btn">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
+            Entrar com Google
+        </a>
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

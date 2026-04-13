@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Environnent Variables ###
+.env
+.env.local
+.env.*.local
+
+### Database ###
+*.db
