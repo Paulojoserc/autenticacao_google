@@ -42,10 +42,10 @@ Este projeto foi baseado em um tutorial e evoluído com melhorias importantes:
 ## 🖼️ Demonstração
 
 ### 🔑 Tela de Login
-*(adicione print aqui)*
+![Tela de Login](https://github.com/Paulojoserc/autenticacao_google/blob/main/docs/login.jpg)
 
 ### 👤 Tela de Perfil
-*(adicione print aqui)*
+![Tela de Perfil](https://github.com/Paulojoserc/autenticacao_google/blob/main/docs/profile.jpeg)
 
 ---
 
