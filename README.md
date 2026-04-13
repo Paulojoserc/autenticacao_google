@@ -1,79 +1,116 @@
-# 🚀 Google OAuth2 Authentication with Spring Boot 4
+# 🔐 Autenticação com Google - Spring Boot OAuth2
 
-Este projeto é uma implementação de autenticação social utilizando **Spring Security** e **Google Cloud Console**. A aplicação foi desenhada para um ambiente de deploy moderno e seguro, utilizando containers Docker, Registry privado (Harbor) e automação via Gitea Actions em uma rede privada.
-
----
-
-## 🛠️ Tecnologias e Ferramentas
-
-* **Java 17** & **Spring Boot 4**
-* **Spring Security** (OAuth2 Client)
-* **Thymeleaf** (Front-end responsivo)
-* **Docker** (Containerização)
-* **Gitea Actions** (CI/CD Pipeline)
-* **Harbor** (Private Image Registry)
-* **Tailscale** (Túnel VPN para deploy seguro em VPS)
+Projeto de autenticação utilizando Google OAuth2 com Spring Boot, desenvolvido com foco em boas práticas de arquitetura, segurança e organização de código.
 
 ---
 
-## 📋 Pré-requisitos
+## 🚀 Tecnologias utilizadas
 
-Para rodar este projeto, você precisará de:
-1.  **Google Cloud Console**: Criar um projeto e configurar a "Tela de permissão OAuth".
-2.  **Credenciais**: Obter o `Client ID` e o `Client Secret`.
-3.  **URI de Redirecionamento**: Configurar no console do Google:
-    * `http://localhost:8080/login/oauth2/code/google`
-
----
-
-## ⚙️ Configuração Local
-
-1.  **Clone o repositório:**
-    ```bash
-    git clone http://seu-gitea-local:3000/paulo-code/autenticacao-google.git
-    cd autenticacao-google
-    ```
-
-2.  **Configuração de variáveis:**
-    Não suba suas credenciais para o Git. Configure-as no seu `application.properties` ou como variáveis de ambiente:
-    ```properties
-    spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
-    spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
-    ```
-
-3.  **Executar a aplicação:**
-    ```bash
-    ./mvnw spring-boot:run
-    ```
+- Java 17
+- Spring Boot
+- Spring Security
+- OAuth2 Client
+- Thymeleaf
+- HTML5 + CSS3
 
 ---
 
-## 🚀 CI/CD & Deploy (Fluxo de Infraestrutura)
+## 🎯 Funcionalidades
 
-Este projeto foi estruturado para não expor portas do ambiente local para a internet:
-
-1.  **Build:** O **Gitea Runner** detecta o *push* na branch `main` e inicia o build da imagem Docker.
-2.  **Registry:** A imagem é enviada para o **Harbor** (local).
-3.  **Túnel:** O **Tailscale** conecta o servidor local ao VPS através de uma rede privada.
-4.  **Deploy:** O Workflow via SSH instrui o VPS a fazer o `docker pull` da imagem do Harbor através do IP da VPN e subir o container com **Docker Compose**.
-
----
-
-## 📂 Estrutura de Endpoints
-
-* `GET /` - Home pública.
-* `GET /login` - Tela de login customizada com botão Google.
-* `GET /profile` - Exibe informações do perfil (Nome, E-mail e Foto) recuperadas do Google.
-* `GET /user` - Retorna os detalhes do objeto `Principal` (JSON).
+✔ Login com conta Google  
+✔ Exibição de dados do usuário (nome, e-mail, foto)  
+✔ Logout com limpeza de sessão e cookies  
+✔ Layout moderno com identidade visual  
+✔ Proteção de credenciais com variáveis de ambiente  
 
 ---
 
-## 🛡️ Segurança
+## 🧠 Diferenciais do projeto
 
-* Uso de **Stateful Sessions** com Cookies protegidos.
-* Configuração de `Content-Security-Policy`.
-* Acesso restrito a rotas sensíveis via `SecurityFilterChain`.
+Este projeto foi baseado em um tutorial e evoluído com melhorias importantes:
+
+- 🔹 Separação de responsabilidades (Controller e API)
+- 🔹 Uso de `@AuthenticationPrincipal` para acesso aos dados do usuário
+- 🔹 Implementação de `.env` para proteger credenciais sensíveis
+- 🔹 Configuração completa de logout (invalidate session + cookies)
+- 🔹 Uso de Thymeleaf fragments (header/footer reutilizáveis)
+- 🔹 CSS externo organizado (padrão profissional)
+- 🔹 Estrutura preparada para deploy em VPS
 
 ---
 
-Desenvolvido por [Paulo Code](https://github.com/seu-perfil) 👨‍💻
+## 🖼️ Demonstração
+
+### 🔑 Tela de Login
+*(adicione print aqui)*
+
+### 👤 Tela de Perfil
+*(adicione print aqui)*
+
+---
+
+## ⚙️ Como executar o projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/Paulojoserc/autenticacao_google.git
+```
+### 2. Criar arquivo .env
+
+Na raiz do projeto, crie um arquivo chamado .env e adicione:
+```env
+GOOGLE_CLIENT_ID=seu_client_id
+GOOGLE_CLIENT_SECRET=seu_client_secret
+```
+### 3. Configurar o Google Cloud
+- Acesse o Google Cloud Console
+- Crie credenciais OAuth2
+- Configure o redirect URI:
+```bash
+http://localhost:8080/login/oauth2/code/google
+```
+### 4. Configurar o application.properties
+Certifique-se de que o projeto está lendo o .env:
+```properties
+spring.application.name=autenticacao_google
+spring.config.import=optional:file:.env[.properties]
+
+spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
+spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
+```
+### 5. Executar o projeto
+Via Maven:
+```Bash
+./mvnw spring-boot:run
+```
+Ou execute diretamente pela IDE (IntelliJ/Eclipse).
+### 6. Acessar no navegador
+Abra:
+```Bash
+http://localhost:8080
+```
+### 🔐 Segurança
+As credenciais sensíveis não são armazenadas no repositório.
+O projeto utiliza variáveis de ambiente (.env) para proteger os dados do OAuth2.
+
+### 🚀 Próximos passos
+- [ ] Deploy em VPS
+- [ ] Configuração de domínio
+- [ ] HTTPS com SSL
+- [ ] Integração com banco de dados
+- [ ] Cadastro de usuários
+
+### 🙏 Créditos
+Este projeto foi desenvolvido com base no excelente conteúdo do professor Matheus Battisti.
+
+📺 Vídeo utilizado:
+https://www.youtube.com/watch?v=o-3LlhkjQzs
+
+Foram aplicadas melhorias e adaptações para tornar o projeto mais próximo de um ambiente profissional.
+
+### 👨‍💻 Autor
+Paulo Costa
+https://github.com/Paulojoserc
+
+### ⭐ Se este projeto te ajudou, deixe uma estrela!
